@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Pg.FrameWork.Common
 {
+    /// <summary>
+    /// Web帮助类
+    /// </summary>
     public class WebHelper
     {
         /// <summary>
