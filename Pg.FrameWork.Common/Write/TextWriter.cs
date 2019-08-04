@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pg.FrameWork.Common.Write
 {
+    /// <summary>
+    /// 文本写入类
+    /// </summary>
     internal class TextWriter
     {
         private readonly string _fileName;
@@ -88,7 +91,7 @@ namespace Pg.FrameWork.Common.Write
                 {
                     return CreateFile(path, GetFileMainName(timeStamp));
                 }
-                catch (Exception)
+                catch (System.Exception)
                 {
                     return null;
                 }
