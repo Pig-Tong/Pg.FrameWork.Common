@@ -96,5 +96,62 @@ namespace Pg.FrameWork.Common
             }
             return string.Empty;
         }
+
+        /// <summary>
+        /// post请求
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static string HttpPost(string url, Dictionary<string, object> dic)
+        {
+            HttpWebRequest httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
+            if (httpWebRequest != null)
+            {
+                StringBuilder builder = new StringBuilder();
+                int i = 0;
+                foreach (var item in dic)
+                {
+                    if (i > 0)
+                        builder.Append("&");
+                    builder.AppendFormat("{0}={1}", item.Key, item.Value);
+                    i++;
+                }
+                string postdata = builder.ToString();
+
+                httpWebRequest.Method = "POST";
+                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                httpWebRequest.Timeout = int.MaxValue;
+                byte[] bytes = Encoding.UTF8.GetBytes(postdata);
+                using (Stream stream = httpWebRequest.GetRequestStream())
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
+                HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+                StreamReader streamReader = null;
+                try
+                {
+                    streamReader = new StreamReader(httpWebResponse.GetResponseStream());
+                    char[] array = new char[256];
+                    StringBuilder stringBuilder = new StringBuilder();
+                    int charCount;
+                    while ((charCount = streamReader.Read(array, 0, array.Length)) > 0)
+                    {
+                        stringBuilder.Append(array, 0, charCount);
+                    }
+                    return stringBuilder.ToString();
+                }
+                catch
+                {
+                    throw;
+                }
+                finally
+                {
+                    httpWebResponse.GetResponseStream().Close();
+                    streamReader.Close();
+                }
+            }
+            return string.Empty;
+        }
     }
 }
