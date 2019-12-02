@@ -1,0 +1,28 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pg.FrameWork.Common/WebHelper.cs">
+    <Files>
+      <File FileName="Pg.FrameWork.Common/Extension/DateExtension.cs" Line="1" Column="1" />
+      <File FileName="Pg.FrameWork.Common/Extension/DecimalExtension.cs" Line="22" Column="79" />
+      <File FileName="Pg.FrameWork.Common/TextHelper.cs" Line="26" Column="19" />
+      <File FileName="Pg.FrameWork.Common/WebHelper.cs" Line="23" Column="27" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Pg.FrameWork.Common" expanded="True">
+            <Node name="Pg.FrameWork.Common" expanded="True">
+              <Node name="Extension" expanded="True" />
+              <Node name="WebHelper.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
