@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -31,6 +32,32 @@ namespace Pg.FrameWork.Common
                 memoryStream.Close();
             }
             return (T)obj2;
+        }
+
+        
+        /// <summary>
+        /// 利用反射实现
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static T DeepCopyByReflection<T>(T obj)
+        {
+            if (obj is string || obj.GetType().IsValueType)
+                return obj;
+
+            object retval = Activator.CreateInstance(obj.GetType());
+            FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static|BindingFlags.Instance);
+            foreach(var field in fields)
+            {
+                try
+                {
+                    field.SetValue(retval, DeepCopyByReflection(field.GetValue(obj)));
+                }
+                catch { }
+            }
+
+            return (T)retval;
         }
     }
 }
